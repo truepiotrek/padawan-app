@@ -9,11 +9,11 @@ function AddItem(props) {
 
     function handleSubmit(event){
         event.preventDefault();
-        props.onAdd(valueInput);
+        if(typeof props.onAdd === 'function') {
+            props.onAdd(valueInput);
+        }
         setState('');
     }
-
-    // console.log(props);
 
     return (
         <div className="add-item">
