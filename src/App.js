@@ -24,6 +24,10 @@ function App() {
         localStorage.setItem('lista', JSON.stringify(zmienna));
     }
 
+    function removeListItem(){
+
+    }
+
     return (
         <div className="App">
             <div className="header">
