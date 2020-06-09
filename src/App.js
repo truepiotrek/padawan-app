@@ -24,8 +24,12 @@ function App() {
         localStorage.setItem('lista', JSON.stringify(zmienna));
     }
 
-    function removeListItem(){
-
+    function removeListItem(index){
+        console.log('funkcja usuwania dziala');
+        let listItems = [...state];
+        listItems.splice(index, 1);
+        setState(listItems);
+        localStorage.setItem('lista', JSON.stringify(listItems))
     }
 
     return (
@@ -35,7 +39,7 @@ function App() {
                     Moja mała lista
                 </h1>
             </div>
-            <List data={state} />
+            <List data={state} removeItem={removeListItem}/>
             <AddItem onAdd={addNewListItem} />
         </div>
     );
