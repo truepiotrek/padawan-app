@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import List from "./components/list";
 import AddItem from "./components/add-item";
+import Dump from "./components/dump";
 
 function App() {
     let nowaZmienna = JSON.parse(localStorage.getItem('lista'));
@@ -45,6 +46,7 @@ function App() {
             </div>
             <List data={state} removeItem={removeListItem}/>
             <AddItem onAdd={addNewListItem} />
+            <Dump value={state} label={"state"}/>
         </div>
     );
 }
