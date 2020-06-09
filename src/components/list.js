@@ -6,7 +6,7 @@ function List(props) {
         if(typeof props.removeItem === 'function') {
             props.removeItem(index);
         }
-    };
+    }
 
     return (
         <div className="list">
@@ -17,6 +17,6 @@ function List(props) {
             })}
         </div>
     )
-};
+}
 
 export default List;

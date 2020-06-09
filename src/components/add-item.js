@@ -28,6 +28,6 @@ function AddItem(props) {
             </form>
         </div>
     )
-};
+}
 
 export default AddItem;
