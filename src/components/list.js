@@ -2,7 +2,7 @@ import React from 'react';
 
 function List(props) {
 
-    function handleRemoval(index){
+    function handleRemoval(index, event){
         if(typeof props.removeItem === 'function') {
             props.removeItem(index);
         }
@@ -13,7 +13,7 @@ function List(props) {
             {props.data.map(function(arrayItem, index) {
                 return (<div className='list-item' key={index + ' ' + arrayItem}>{arrayItem}
                 <button type="button" className={"item-removal"}
-                        onClick={(event) => handleRemoval(index)}>Usuń</button></div>);
+                        onClick={function(event) { handleRemoval(index, event); }}>Usuń</button></div>);
             })}
         </div>
     )
