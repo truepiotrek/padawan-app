@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
+import Dump from "./dump";
+
 
 export default function Checkbox(props) {
-	const [isChecked, setIsChecked] = useState(false);
+	const [isChecked, setIsChecked] = useState(props.value);
 
 	function toggleCheckboxChange() {
 		setIsChecked(!isChecked);
 
 		if (typeof props.handleCheckboxChange === 'function') {
-			props.handleCheckboxChange(props.label);
+			props.handleCheckboxChange(props.name, !isChecked);
 		}
 	}
 
@@ -16,11 +18,10 @@ export default function Checkbox(props) {
 			<label>
 				<input
 					type="checkbox"
-					value={props.label}
+					name={props.name}
 					checked={isChecked}
 					onChange={toggleCheckboxChange}
 				/>
-				<span className="checkmark">{props.label}</span>
 			</label>
 		</div>
 	);

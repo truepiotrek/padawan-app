@@ -21,7 +21,9 @@ function App() {
 
     function addNewListItem(newListItem){
         let zmienna = [...state];  // klonowaie state
-        zmienna.push(newListItem);  // dodawanie nowego itemu do klonu state
+
+        zmienna.push( { checked: false, name: newListItem} );  // dodawanie nowego itemu do klonu state
+
         setState(zmienna); // zapis nowego state
 
         // setState([newListItem, ...state]); // stworz nowa tabele z zawartoscia state, dodaj nowy element na początek
@@ -37,6 +39,14 @@ function App() {
         saveStateToLocalStorage(listItems);
     }
 
+    function checkCheckbox(index, isChecked){
+        let listItems = [...state];
+        listItems[index].checked = isChecked;
+        console.log(listItems[index])
+        setState(listItems);
+        saveStateToLocalStorage(listItems);
+    }
+
     return (
         <div className="App">
             <div className="header">
@@ -44,9 +54,8 @@ function App() {
                     Moja mała lista
                 </h1>
             </div>
-            <List data={state} removeItem={removeListItem}/>
+            <List data={state} removeItem={removeListItem} updateCheckbox={checkCheckbox}/>
             <AddItem onAdd={addNewListItem} />
-            <Dump value={state} label={"state"}/>
         </div>
     );
 }
