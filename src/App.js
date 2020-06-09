@@ -14,6 +14,10 @@ function App() {
 
     const [state, setState] = useState(nowaZmienna);
 
+    function saveStateToLocalStorage(newState){
+        localStorage.setItem('lista', JSON.stringify(newState));
+    }
+
     function addNewListItem(newListItem){
         let zmienna = [...state];  // klonowaie state
         zmienna.push(newListItem);  // dodawanie nowego itemu do klonu state
@@ -21,7 +25,7 @@ function App() {
 
         // setState([newListItem, ...state]); // stworz nowa tabele z zawartoscia state, dodaj nowy element na początek
 
-        localStorage.setItem('lista', JSON.stringify(zmienna));
+        saveStateToLocalStorage(zmienna);
     }
 
     function removeListItem(index){
@@ -29,7 +33,7 @@ function App() {
         let listItems = [...state];
         listItems.splice(index, 1);
         setState(listItems);
-        localStorage.setItem('lista', JSON.stringify(listItems))
+        saveStateToLocalStorage(listItems);
     }
 
     return (

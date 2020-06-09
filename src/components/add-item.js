@@ -9,17 +9,23 @@ function AddItem(props) {
 
     function handleSubmit(event){
         event.preventDefault();
-        if(typeof props.onAdd === 'function') {
-            props.onAdd(valueInput);
+        if(valueInput === ''){
+            console.log('Nie podano nowej rzeczy do zrobienia, uzupełnij proszę')
+        } else {
+            if (typeof props.onAdd === 'function') {
+                props.onAdd(valueInput);
+            }
+            setState('');
         }
-        setState('');
     }
 
     return (
         <div className="add-item">
-            <input type="text" placeholder="Nowa rzecz do zrobienia" value={valueInput} className="new-item-input"
-                   onChange={handleInputChange}/>
-            <input type="button" value="Dodaj" className="button-add" onClick={handleSubmit}/>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Nowa rzecz do zrobienia" value={valueInput} className="new-item-input"
+                       onChange={handleInputChange}/>
+                <input type="button" value="Dodaj" className="button-add" onClick={handleSubmit}/>
+            </form>
         </div>
     )
 };
