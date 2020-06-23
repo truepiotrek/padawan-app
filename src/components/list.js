@@ -25,9 +25,9 @@ function List(props) {
                     <div className='list-item' key={index + ' ' + arrayItem.name}>
                         <Checkbox value={arrayItem.checked} handleCheckboxChange={function(name, isChecked) {handleCheckbox(index, isChecked)}}/>
                         {arrayItem.name}
-                        <button type="button" className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
-                            Usuń
-                        </button>
+                        <a href className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
+                            X
+                        </a>
 {/*
                     <Dump value={arrayItem}/>
 */}
