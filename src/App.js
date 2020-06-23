@@ -46,6 +46,17 @@ function App() {
         setState(listItems);
         saveStateToLocalStorage(listItems);
     }
+    function renderIfListHasItems() {
+        if(state.length === 0) {
+            return (
+                <span className="default-message">Smuteczek... Dodaj coś no!</span>
+            );
+        }
+
+        return (
+            <List data={state} removeItem={removeListItem} updateCheckbox={checkCheckbox}/>
+        );
+    }
 
     return (
         <div className="App">
@@ -54,7 +65,7 @@ function App() {
                     Moja mała lista
                 </h1>
             </div>
-            <List data={state} removeItem={removeListItem} updateCheckbox={checkCheckbox}/>
+            {renderIfListHasItems()}
             <AddItem onAdd={addNewListItem} />
         </div>
     );
