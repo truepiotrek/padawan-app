@@ -13,7 +13,7 @@ function List(props) {
     function handleCheckbox(index, isChecked){
         console.log('checkbox checkniety');
         console.log(index, isChecked);
-        if(typeof props.updateCheckbox === 'function') {
+        if (typeof props.updateCheckbox === 'function') {
             props.updateCheckbox(index, isChecked);
         }
     }
@@ -24,8 +24,14 @@ function List(props) {
                 return (
                     <div className='list-item' key={index + ' ' + arrayItem.name}>
                         <Checkbox value={arrayItem.checked} handleCheckboxChange={function(name, isChecked) {handleCheckbox(index, isChecked)}}/>
-                        <ListItem name={arrayItem.name} isEdited={props.editListItem === index} setEditListItem={props.setEditListItem} position={index}/>
-                        <a href="#" className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
+                        <ListItem
+                            name={arrayItem.name}
+                            isEdited={props.editListItem === index}
+                            setEditListItem={props.setEditListItem}
+                            position={index}
+                            editName={props.changeListItemName}
+                        />
+                        <a href='#' className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
                             X
                         </a>
                     </div>

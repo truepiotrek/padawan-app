@@ -30,6 +30,9 @@ function App() {
     }
 
     function removeListItem(index){
+        if (editListItem === index) {
+            setEditListItem(null);
+        }
         console.log('funkcja usuwania dziala');
         let listItems = [...todoList];
         listItems.splice(index, 1);
@@ -42,6 +45,16 @@ function App() {
         listItems[index].checked = isChecked;
         console.log(listItems[index])
         setTodoList(listItems);
+        saveStateToLocalStorage(listItems);
+    }
+
+    function editListItemName(index, newName){
+        let listItems = [...todoList];
+        console.log(index);
+        console.log(newName);
+        listItems[index].name = newName;
+        setTodoList(listItems);
+        setEditListItem(null);
         saveStateToLocalStorage(listItems);
     }
 
@@ -59,6 +72,7 @@ function App() {
                 updateCheckbox={checkCheckbox}
                 editListItem={editListItem}
                 setEditListItem={setEditListItem}
+                changeListItemName={editListItemName}
             />
         );
     }
