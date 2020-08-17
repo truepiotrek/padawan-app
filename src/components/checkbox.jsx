@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Dump from "./dump";
 
 
 export default function Checkbox(props) {

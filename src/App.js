@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import List from "./components/list";
 import AddItem from "./components/add-item";
-import Dump from "./components/dump";
 
 function App() {
     let nowaZmienna = JSON.parse(localStorage.getItem('lista'));
@@ -13,48 +12,54 @@ function App() {
         nowaZmienna = [];
     }
 
-    const [state, setState] = useState(nowaZmienna);
+    const [todoList, setTodoList] = useState(nowaZmienna);
+    const [editListItem, setEditListItem] = useState(null);
 
     function saveStateToLocalStorage(newState){
         localStorage.setItem('lista', JSON.stringify(newState));
     }
 
     function addNewListItem(newListItem){
-        let zmienna = [...state];  // klonowaie state
+        let zmienna = [...todoList];  // klonowaie state
 
         zmienna.push( { checked: false, name: newListItem} );  // dodawanie nowego itemu do klonu state
 
-        setState(zmienna); // zapis nowego state
-
-        // setState([newListItem, ...state]); // stworz nowa tabele z zawartoscia state, dodaj nowy element na początek
+        setTodoList(zmienna); // zapis nowego state
 
         saveStateToLocalStorage(zmienna);
     }
 
     function removeListItem(index){
         console.log('funkcja usuwania dziala');
-        let listItems = [...state];
+        let listItems = [...todoList];
         listItems.splice(index, 1);
-        setState(listItems);
+        setTodoList(listItems);
         saveStateToLocalStorage(listItems);
     }
 
     function checkCheckbox(index, isChecked){
-        let listItems = [...state];
+        let listItems = [...todoList];
         listItems[index].checked = isChecked;
         console.log(listItems[index])
-        setState(listItems);
+        setTodoList(listItems);
         saveStateToLocalStorage(listItems);
     }
+
     function renderIfListHasItems() {
-        if(state.length === 0) {
+        if(todoList.length === 0) {
             return (
                 <span className="default-message">Smuteczek... Dodaj coś no!</span>
             );
         }
 
         return (
-            <List data={state} removeItem={removeListItem} updateCheckbox={checkCheckbox}/>
+            <List
+                data={todoList}
+                removeItem={removeListItem}
+                updateCheckbox={checkCheckbox}
+                editListItem={editListItem}
+                setEditListItem={setEditListItem}
+            />
         );
     }
 

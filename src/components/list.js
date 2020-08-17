@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from "./checkbox";
-import Dump from "./dump";
+import ListItem from "./listItem";
 
 function List(props) {
 
@@ -24,13 +24,10 @@ function List(props) {
                 return (
                     <div className='list-item' key={index + ' ' + arrayItem.name}>
                         <Checkbox value={arrayItem.checked} handleCheckboxChange={function(name, isChecked) {handleCheckbox(index, isChecked)}}/>
-                        {arrayItem.name}
-                        <a href className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
+                        <ListItem name={arrayItem.name} isEdited={props.editListItem === index} setEditListItem={props.setEditListItem} position={index}/>
+                        <a href="#" className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
                             X
                         </a>
-{/*
-                    <Dump value={arrayItem}/>
-*/}
                     </div>
                 )
             })}
