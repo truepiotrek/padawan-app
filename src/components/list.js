@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkbox from "./checkbox";
 import ListItem from "./listItem";
+import Stopwatch from "./Stopwatch";
 
 function List(props) {
 
@@ -30,7 +31,7 @@ function List(props) {
                             setEditListItem={props.setEditListItem}
                             position={index}
                             editName={props.changeListItemName}
-                        />
+                        /> <Stopwatch />
                         <a href='#' className={"item-removal"} onClick={function(event) {handleRemoval(index, event); }}>
                             X
                         </a>
