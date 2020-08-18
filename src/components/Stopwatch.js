@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import './Stopwatch.css';
 import Dump from "./dump";
 
 function Stopwatch() {
